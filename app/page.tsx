@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 export default function Page() {
   return (
-    <div className="py-24">
-      <div className="container">
-        <h1 className="text-3xl font-bold">Portfolio</h1>
+    <div className='py-24'>
+      <div className='container max-w-3xl'>
+        <h1 className='text-3xl font-bold'>Portfolio</h1>
       </div>
     </div>
-  );
+  )
 }
