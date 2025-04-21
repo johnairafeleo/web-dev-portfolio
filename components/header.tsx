@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className='bg-background/75 fixed inset-x-0 top-0 z-50 flex flex-col items-center py-6 backdrop-blur-sm'>
       <Container>
-        <nav className='flex items-center justify-between px-5'>
+        <nav className='flex items-center justify-between'>
           <div>
             <Link href='/' className='font-serif text-2xl font-bold'>
               HB
