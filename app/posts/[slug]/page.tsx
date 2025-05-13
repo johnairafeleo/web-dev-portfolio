@@ -1,23 +1,34 @@
-import { getPostBySlug } from '@/lib/posts'
-import ArrowLeftIcon from '@radix-ui/react-icons/dist/ArrowLeftIcon'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import React from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
+import { ArrowLeftIcon } from '@radix-ui/react-icons'
+
+import { getPostBySlug, getPosts } from '@/lib/posts'
 import { formatDate } from '@/lib/utils'
-import { MDXRemote } from 'next-mdx-remote/rsc'
-export const Post = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params
-  const post = await getPostBySlug(slug)
+import MDXContent from '@/components/mdx-content'
+import { Container } from '@/components/common/container'
+
+// Generate static paths for SSG
+export async function generateStaticParams() {
+  const posts = await getPosts()
+  return posts.map(post => ({ slug: post.slug }))
+}
+
+// Main post page component
+export default async function Post({ params }: { params: { slug: string } }) {
+  const parameter = await params
+  const post = await getPostBySlug(parameter.slug)
+
   if (!post) {
     notFound()
   }
 
   const { metadata, content } = post
   const { title, image, author, publishedAt } = metadata
+
   return (
     <section className='pt-32 pb-24'>
-      <div className='container max-w-3xl'>
+      <Container>
         <Link
           href='/posts'
           className='text-muted-foreground hover:text-foreground mb-8 inline-flex items-center gap-2 text-sm font-light transition-colors'
@@ -30,28 +41,30 @@ export const Post = async ({ params }: { params: { slug: string } }) => {
           <div className='relative mb-6 h-96 w-full overflow-hidden rounded-lg'>
             <Image
               src={image}
-              alt={title || ''}
+              alt={title || 'Post image'}
               className='object-cover'
               fill
+              priority
             />
           </div>
         )}
 
         <header>
-          <h1 className='title'>{title}</h1>
+          <h1 className='text-2xl font-bold'>{title}</h1>
           <p className='text-muted-foreground mt-3 text-xs'>
-            {author} / {formatDate(publishedAt ?? '')}
+            {author ?? 'Unknown'} / {formatDate(publishedAt ?? '')}
           </p>
         </header>
 
-        <main className='prose dark:prose-invert mt-16'>
-          <MDXRemote source={content} />
+        <main className='prose dark:prose-invert mt-6'>
+          <MDXContent source={content} />
         </main>
 
-        {/* <footer className='mt-16'>
+        {/* Optional: add a newsletter form or related posts */}
+        {/* <footer className="mt-16">
           <NewsletterForm />
         </footer> */}
-      </div>
+      </Container>
     </section>
   )
 }
