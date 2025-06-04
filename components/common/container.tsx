@@ -6,10 +6,11 @@ import { forwardRef, type HTMLAttributes } from 'react'
 export const containerVariants = cva('mx-auto max-w-[1440px] sm:px-5 w-full', {
   variants: {
     variant: {
-      default: 'container max-w-3xl px-5',
+      default: 'container max-w-5xl px-5',
       hero: 'md:py-5 px-0 sm:px-20 flex flex-col items-center justify-center gap-5',
       landing: 'md:px-20 py-5 ',
       employer: 'p-5 '
+      // default: ' md:px-20'
     }
   },
   defaultVariants: {
