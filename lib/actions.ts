@@ -20,12 +20,12 @@ export async function sendEmail(data: ContactFormInputs) {
     const { name, email, message } = result.data
 
     const response = await resend.emails.send({
-      from: 'onboarding@resend.dev', // ✅ for dev only
-      to: [email],
-      cc: ['johnairacruzfeleo@gmail.com'],
+      from: 'onboarding@resend.dev',
+      to: process.env.RECIPIENT_EMAIL as string,
+      // cc: ['johnairacruzfeleo@gmail.com'],
       subject: 'Contact form submission',
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-      react: await ContactFormEmail({ name, email, message }) // ✅ no await needed
+      react: await ContactFormEmail({ name, email, message })
     })
 
     if (response.error) {
