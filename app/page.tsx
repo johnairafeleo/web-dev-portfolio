@@ -1,11 +1,16 @@
-import React from 'react'
+import { Container } from '@/components/common/container'
+import Intro from '@/components/intro'
+import RecentPosts from '@/components/recent-posts'
+import RecentProjects from '@/components/recent-projects'
 
-export default function Page() {
+export default function Home() {
   return (
-    <div className='py-24'>
-      <div className='container max-w-3xl'>
-        <h1 className='text-3xl font-bold'>Portfolio</h1>
-      </div>
-    </div>
+    <section className='py-24'>
+      <Container>
+        <Intro />
+        <RecentPosts />
+        <RecentProjects />
+      </Container>
+    </section>
   )
 }

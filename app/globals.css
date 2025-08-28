@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -41,11 +42,14 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --prose-base-background-color: var(--pre-background);
+
 }
 
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
+  --pre-background: oklch(0.946 0.004 257.8);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -110,12 +114,22 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --prose-base-background-color: oklch(0.4099 0.0588 268.61)
+}
+
+.prose {
+  pre {
+    font-family: var(--font-geist-mono), monospace;
+    background-color: color-mix(in oklch, var(--prose-base-background-color) 50%, transparent);
+    color: var(--color-foreground);
+  }
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

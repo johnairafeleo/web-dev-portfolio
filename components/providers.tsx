@@ -1,6 +1,8 @@
 'use client'
 
-import { ThemeProvider, useTheme } from 'next-themes'
+import { ThemeProvider } from 'next-themes'
+
+import { ToasterProvider } from './toaster-provider'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -11,6 +13,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
       disableTransitionOnChange
     >
       {children}
+      <ToasterProvider />
     </ThemeProvider>
   )
 }
