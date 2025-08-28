@@ -11,17 +11,16 @@ import { Container } from '@/components/common/container'
 
 export async function generateStaticParams() {
   const projects = await getProjects()
-  const slugs = projects.map(project => ({ slug: project.slug }))
-
-  return slugs
+  return projects.map(project => ({ slug: project.slug }))
 }
 
 export default async function Project({
   params
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const { slug } = params
+  // ✅ Await params before using it
+  const { slug } = await params
   const project = await getProjectBySlug(slug)
 
   if (!project) {
