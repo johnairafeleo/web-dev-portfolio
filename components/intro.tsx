@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles, Code, MousePointerClick } from 'lucide-react'
 
 export default function Intro() {
   return (
-    <section className='relative flex min-h-[85vh] flex-col items-start justify-center overflow-hidden bg-white pb-24 text-black md:pb-32 dark:bg-black dark:text-white'>
+    <section className='relative flex min-h-[85vh] flex-col items-start justify-center overflow-hidden bg-white pb-24 text-black md:pb-32 dark:bg-transparent dark:text-white'>
       {/* Animated background */}
       <div className='absolute inset-0 -z-10'>
         <div className='absolute top-1/4 left-1/4 h-72 w-72 animate-pulse rounded-full bg-black/10 blur-3xl dark:bg-white/10' />
