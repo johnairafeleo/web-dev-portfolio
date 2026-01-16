@@ -6,6 +6,8 @@ import { Container } from './common/container'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/skills', label: 'Skills' },
   { href: '/projects', label: 'Projects' },
   { href: '/contact', label: 'Contact' }
 ]
@@ -34,7 +36,7 @@ export default function Header() {
           <ul className='text-muted-foreground flex items-center gap-4 text-sm font-medium sm:gap-8'>
             {navLinks.map(({ href, label }) => {
               const isActive =
-                pathname === href || pathname.startsWith(`${href}/`)
+                href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`)
               return (
                 <li key={href}>
                   <Link
