@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { formatDate } from '@/lib/utils'
 import MDXContent from '@/components/mdx-content'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
 
@@ -28,7 +27,17 @@ export default async function Project({
   }
 
   const { metadata, content } = project
-  const { title, image, author, publishedAt } = metadata
+  const { title, image, imageFit, imagePosition, imageLayout } = metadata
+
+  const layout = imageLayout ?? 'top'
+  const isContain = imageFit === 'contain'
+  const fitClass = imageFit === 'contain' ? 'object-contain' : 'object-cover'
+  const positionClass =
+    imagePosition === 'bottom'
+      ? 'object-bottom'
+      : imagePosition === 'center'
+        ? 'object-center'
+        : 'object-top'
 
   return (
     <section className='pt-32 pb-24'>
@@ -41,30 +50,63 @@ export default async function Project({
           <span>Back to projects</span>
         </Link>
 
-        {image && (
-          <div className='relative mb-6 h-96 w-full overflow-hidden rounded-lg'>
-            <Image
-              src={image}
-              alt={title || ''}
-              className='object-cover'
-              fill
-            />
+        {layout === 'side' ? (
+          <div className='grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start'>
+            <div>
+              <header>
+                <h1 className='text-3xl leading-tight font-semibold tracking-tight sm:text-4xl'>
+                  {title}
+                </h1>
+              </header>
+
+              <main className='prose dark:prose-invert mt-10'>
+                <MDXContent source={content} />
+              </main>
+            </div>
+
+            {image ? (
+              <div
+                className={`relative mx-auto w-full max-w-[360px] overflow-hidden rounded-lg ${
+                  isContain ? 'bg-card/40' : ''
+                } aspect-[9/16] lg:mt-1`}
+              >
+                <Image
+                  src={image}
+                  alt={title || ''}
+                  className={`${fitClass} ${isContain ? 'object-center' : positionClass}`}
+                  fill
+                />
+              </div>
+            ) : null}
           </div>
+        ) : (
+          <>
+            {image && (
+              <div
+                className={`relative mb-8 h-64 w-full overflow-hidden rounded-lg sm:h-80 lg:h-96 ${
+                  isContain ? 'bg-card/40' : ''
+                }`}
+              >
+                <Image
+                  src={image}
+                  alt={title || ''}
+                  className={`${fitClass} ${isContain ? 'object-center' : positionClass}`}
+                  fill
+                />
+              </div>
+            )}
+
+            <header>
+              <h1 className='text-3xl leading-tight font-semibold tracking-tight sm:text-4xl'>
+                {title}
+              </h1>
+            </header>
+
+            <main className='prose dark:prose-invert mt-10'>
+              <MDXContent source={content} />
+            </main>
+          </>
         )}
-
-        <header>
-          <h1 className='title'>{title}</h1>
-          {author ? (
-            <p className='text-muted-foreground mt-3 text-xs'>
-              {author}
-              {publishedAt ? ` / ${formatDate(publishedAt)}` : ''}
-            </p>
-          ) : null}
-        </header>
-
-        <main className='prose dark:prose-invert mt-16'>
-          <MDXContent source={content} />
-        </main>
       </Container>
     </section>
   )

@@ -13,6 +13,9 @@ export type ProjectMetadata = {
   title?: string
   summary?: string
   image?: string
+  imageFit?: 'cover' | 'contain'
+  imagePosition?: 'top' | 'center' | 'bottom'
+  imageLayout?: 'top' | 'side'
   author?: string
   publishedAt?: string
   url?: string
