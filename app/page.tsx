@@ -3,7 +3,7 @@ import Intro from '@/components/intro'
 
 export default function Home() {
   return (
-    <section className='py-24'>
+    <section>
       <Container>
         <Intro />
       </Container>

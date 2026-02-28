@@ -13,9 +13,10 @@ import type { CSSProperties } from 'react'
 
 type OrbitingIconsProps = {
   className?: string
+  size?: number
 }
 
-export default function OrbitingIcons({ className }: OrbitingIconsProps) {
+export default function OrbitingIcons({ className, size }: OrbitingIconsProps) {
   const outer = [
     { Icon: Globe, angle: 10, color: '#3b82f6' },
     { Icon: GitBranch, angle: 55, color: '#f97316' },
@@ -35,7 +36,14 @@ export default function OrbitingIcons({ className }: OrbitingIconsProps) {
 
   return (
     <div className={className}>
-      <div className='orbit-root'>
+      <div
+        className='orbit-root'
+        style={
+          size
+            ? ({ width: `${size}px`, height: `${size}px` } as CSSProperties)
+            : undefined
+        }
+      >
         <div className='orbit-center' />
 
         <div className='orbit-ring orbit-ring--outer'>

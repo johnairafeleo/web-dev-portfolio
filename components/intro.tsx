@@ -5,7 +5,7 @@ import OrbitingIcons from '@/components/orbiting-icons'
 
 export default function Intro() {
   return (
-    <section className='relative flex min-h-[85vh] flex-col items-start justify-center overflow-hidden bg-white pb-24 text-black md:pb-32 dark:bg-transparent dark:text-white'>
+    <section className='relative flex min-h-[75vh] flex-col items-start justify-center overflow-hidden bg-white pt-24 pb-16 text-black sm:min-h-[85vh] sm:pt-28 sm:pb-24 md:pb-32 dark:bg-transparent dark:text-white'>
       {/* Animated background */}
       <div className='absolute inset-0 -z-10'>
         <div className='absolute top-1/4 left-1/4 h-72 w-72 animate-pulse rounded-full bg-black/10 blur-3xl dark:bg-white/10' />
@@ -126,7 +126,7 @@ export default function Intro() {
         </div>
 
         <div className='hidden justify-center lg:flex'>
-          <OrbitingIcons />
+          <OrbitingIcons size={340} />
         </div>
       </div>
     </section>
