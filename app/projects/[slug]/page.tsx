@@ -54,9 +54,12 @@ export default async function Project({
 
         <header>
           <h1 className='title'>{title}</h1>
-          <p className='text-muted-foreground mt-3 text-xs'>
-            {author} / {formatDate(publishedAt ?? '')}
-          </p>
+          {author ? (
+            <p className='text-muted-foreground mt-3 text-xs'>
+              {author}
+              {publishedAt ? ` / ${formatDate(publishedAt)}` : ''}
+            </p>
+          ) : null}
         </header>
 
         <main className='prose dark:prose-invert mt-16'>
