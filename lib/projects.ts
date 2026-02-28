@@ -13,8 +13,12 @@ export type ProjectMetadata = {
   title?: string
   summary?: string
   image?: string
+  imageFit?: 'cover' | 'contain'
+  imagePosition?: 'top' | 'center' | 'bottom'
+  imageLayout?: 'top' | 'side'
   author?: string
   publishedAt?: string
+  url?: string
   slug: string
 }
 
@@ -36,11 +40,12 @@ export async function getProjects(limit?: number): Promise<ProjectMetadata[]> {
   const projects = files
     .map(file => getProjectMetadata(file))
     .sort((a, b) => {
-      if (new Date(a.publishedAt ?? '') < new Date(b.publishedAt ?? '')) {
-        return 1
-      } else {
-        return -1
-      }
+      const aTime = a.publishedAt ? Date.parse(a.publishedAt) : 0
+      const bTime = b.publishedAt ? Date.parse(b.publishedAt) : 0
+      const aVal = Number.isFinite(aTime) ? aTime : 0
+      const bVal = Number.isFinite(bTime) ? bTime : 0
+
+      return bVal - aVal
     })
 
   if (limit) {

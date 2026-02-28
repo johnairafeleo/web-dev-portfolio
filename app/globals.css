@@ -125,12 +125,90 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+@keyframes orbit-rotate {
+  from {
+    transform: rotate(0deg);
   }
 
-  body {
-    @apply bg-background text-foreground;
+  to {
+    transform: rotate(360deg);
   }
+}
+
+.orbit-root {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+@media (min-width: 640px) {
+  .orbit-root {
+    width: 360px;
+    height: 360px;
+  }
+}
+
+.orbit-center {
+  position: absolute;
+  inset: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  margin-top: -8px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--foreground) 18%, transparent);
+  box-shadow:
+    0 0 0 10px color-mix(in srgb, var(--foreground) 6%, transparent),
+    0 0 0 28px color-mix(in srgb, var(--foreground) 4%, transparent);
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  animation: orbit-rotate 28s linear infinite;
+}
+
+.orbit-ring--outer {
+  opacity: 0.95;
+}
+
+.orbit-ring--inner {
+  inset: 60px;
+  animation-duration: 18s;
+  opacity: 0.9;
+}
+
+.orbit-ring--reverse {
+  animation-direction: reverse;
+}
+
+.orbit-item {
+  position: absolute;
+  inset: 0;
+}
+
+.orbit-item-inner {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--orbit-color, var(--foreground)) 18%, transparent);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--foreground) 10%, transparent),
+    0 12px 32px color-mix(in srgb, var(--foreground) 8%, transparent),
+    0 0 0 6px color-mix(in srgb, var(--orbit-color, var(--foreground)) 10%, transparent);
+}
+
+.orbit-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--orbit-color, var(--foreground));
+  filter: drop-shadow(0 10px 24px color-mix(in srgb, var(--orbit-color, var(--foreground)) 45%, transparent));
 }
