@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ThemeToggle } from '@/components/theme-toggle'
@@ -29,13 +30,21 @@ export default function Header() {
           <div className='group relative'>
             <Link
               href='/'
-              className='relative font-serif text-xl font-bold transition-all duration-300 hover:scale-105 sm:text-2xl'
+              className='relative flex items-center gap-2 font-serif text-xl font-bold transition-all duration-300 hover:scale-105 sm:text-2xl'
             >
+              <Image
+                src='/logo.svg'
+                alt='Aira.dev'
+                width={28}
+                height={28}
+                className='rounded-md'
+                priority
+              />
               <span className='from-foreground via-foreground/80 to-foreground group-hover:from-foreground/90 group-hover:via-foreground group-hover:to-foreground/90 relative z-10 bg-gradient-to-r bg-clip-text text-transparent transition-all duration-500'>
-                John Aira
+                Aira<span className='text-muted-foreground'>.dev</span>
               </span>
               <span className='from-foreground/50 via-foreground/30 to-foreground/50 absolute inset-0 bg-gradient-to-r bg-clip-text text-transparent opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-30'>
-                John Aira
+                Aira<span className='text-muted-foreground'>.dev</span>
               </span>
             </Link>
           </div>
