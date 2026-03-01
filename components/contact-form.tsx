@@ -78,78 +78,91 @@ export default function ContactForm() {
       </svg>
 
       {/* Form */}
-      <div className='relative'>
-        <form
-          onSubmit={handleSubmit(processForm)}
-          className='mt-16 lg:flex-auto'
-          noValidate
-        >
-          <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-            {/* Name */}
-            <div>
-              <Input
-                id='name'
-                type='text'
-                placeholder='Name'
-                autoComplete='given-name'
-                {...register('name')}
-              />
-
-              {errors.name?.message && (
-                <p className='mt-2 ml-1 text-sm text-rose-400'>
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
-
-            {/* Email */}
-            <div>
-              <Input
-                type='email'
-                id='email'
-                autoComplete='email'
-                placeholder='Email'
-                {...register('email')}
-              />
-
-              {errors.email?.message && (
-                <p className='mt-2 ml-1 text-sm text-rose-400'>
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            {/* Message */}
-            <div className='sm:col-span-2'>
-              <Textarea
-                rows={4}
-                placeholder='Message'
-                {...register('message')}
-              />
-
-              {errors.message?.message && (
-                <p className='mt-2 ml-1 text-sm text-rose-400'>
-                  {errors.message.message}
-                </p>
-              )}
-            </div>
+      <div className='relative mx-auto mt-14 w-full max-w-3xl px-4 sm:px-6 lg:px-8'>
+        <div className='bg-card/40 ring-foreground/10 rounded-2xl p-6 shadow-sm ring-1 backdrop-blur-md sm:p-8'>
+          <div className='space-y-2'>
+            <h2 className='text-2xl font-semibold tracking-tight'>
+              Let’s talk about your project
+            </h2>
+            <p className='text-muted-foreground text-sm leading-relaxed'>
+              Send a message and I’ll get back to you as soon as possible.
+            </p>
           </div>
-          <div className='mt-6'>
-            <Button
-              type='submit'
-              disabled={isSubmitting}
-              className='w-full disabled:opacity-50'
-            >
-              {isSubmitting ? 'Submitting...' : 'Contact Us'}
-            </Button>
-          </div>
-          <p className='text-muted-foreground mt-4 text-xs'>
-            By submitting this form, I agree to the{' '}
-            <Link href='/privacy' className='font-bold'>
-              privacy&nbsp;policy.
-            </Link>
-          </p>
-        </form>
+
+          <form
+            onSubmit={handleSubmit(processForm)}
+            className='mt-8'
+            noValidate
+          >
+            <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6'>
+              {/* Name */}
+              <div>
+                <Input
+                  id='name'
+                  type='text'
+                  placeholder='Name'
+                  autoComplete='given-name'
+                  {...register('name')}
+                />
+
+                {errors.name?.message && (
+                  <p className='mt-2 ml-1 text-sm text-rose-400'>
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div>
+                <Input
+                  type='email'
+                  id='email'
+                  autoComplete='email'
+                  placeholder='Email'
+                  {...register('email')}
+                />
+
+                {errors.email?.message && (
+                  <p className='mt-2 ml-1 text-sm text-rose-400'>
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Message */}
+              <div className='sm:col-span-2'>
+                <Textarea
+                  rows={6}
+                  placeholder='Message'
+                  {...register('message')}
+                />
+
+                {errors.message?.message && (
+                  <p className='mt-2 ml-1 text-sm text-rose-400'>
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className='mt-6'>
+              <Button
+                type='submit'
+                disabled={isSubmitting}
+                className='w-full disabled:opacity-50'
+              >
+                {isSubmitting ? 'Submitting...' : 'Send message'}
+              </Button>
+            </div>
+
+            <p className='text-muted-foreground mt-4 text-xs'>
+              By submitting this form, I agree to the{' '}
+              <Link href='/privacy' className='font-bold'>
+                privacy&nbsp;policy.
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
     </section>
   )
