@@ -19,6 +19,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Aira.dev',
   description: 'Aira.dev — personal portfolio and projects.',
+  icons: {
+    icon: '/logo.svg',
+    apple: '/logo.svg'
+  },
   openGraph: {
     title: 'Aira.dev',
     description: 'Aira.dev — personal portfolio and projects.'

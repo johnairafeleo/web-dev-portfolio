@@ -6,7 +6,7 @@ export default async function ProjectsPage() {
   const projects = await getProjects()
 
   return (
-    <section className='relative overflow-hidden pt-28 pb-20 sm:pt-32'>
+    <section className='relative overflow-hidden pt-28 pb-12 sm:pt-32'>
       <div className='pointer-events-none absolute inset-0 -z-10'>
         <div className='absolute top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-white/10 blur-3xl dark:bg-white/10' />
         <div className='absolute top-60 right-[-6rem] h-80 w-80 rounded-full bg-white/5 blur-3xl dark:bg-white/10' />
@@ -14,7 +14,7 @@ export default async function ProjectsPage() {
       </div>
 
       <Container className='max-w-6xl'>
-        <header className='mb-10 space-y-4 sm:mb-12'>
+        <header className='mb-8 space-y-4 sm:mb-10'>
           <div className='space-y-2'>
             <h1 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
               Projects

@@ -1,4 +1,4 @@
-import { Code, Database, Zap, Settings, Palette, Globe } from 'lucide-react'
+import { Database, Zap, Settings, Palette, Globe } from 'lucide-react'
 
 const skillCategories = [
   {
@@ -84,4 +84,3 @@ export default function Skills() {
     </div>
   )
 }
-
